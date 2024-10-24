@@ -1,9 +1,14 @@
-﻿using TaskManagerAPI.Application;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManagerAPI.Application;
 using TaskManagerAPI.Persistence;
+using TaskManagerAPI.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<TaskManagerDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("TaskManagerDbConnection")));
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();

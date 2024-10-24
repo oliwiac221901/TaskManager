@@ -9,4 +9,18 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\TaskManagerAPI.Application\TaskManagerAPI.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Context\" />
+    <None Remove="EntityConfigurations\" />
+    <None Remove="EntityConfigurations\UsersConfigurations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="EntityConfigurations\" />
+    <Folder Include="EntityConfigurations\UsersConfigurations\" />
+  </ItemGroup>
 </Project>
