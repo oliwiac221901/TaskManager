@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TaskManagerAPI.Application.Common.Interfaces;
 using TaskManagerAPI.Domain.Entities.UserManage;
 using TaskManagerAPI.Persistence.EntityConfigurations.UsersConfigurations;
 
 namespace TaskManagerAPI.Persistence.Context
 {
-	public class TaskManagerDbContext : DbContext
+	public class TaskManagerDbContext : DbContext, ITaskManagerDbContext
 	{
 		public TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options)
 			: base(options)
