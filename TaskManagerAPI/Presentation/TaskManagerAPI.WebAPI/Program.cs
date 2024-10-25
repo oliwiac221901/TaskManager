@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManagerAPI.Application;
+using TaskManagerAPI.Application.Common.Interfaces;
 using TaskManagerAPI.Persistence;
 using TaskManagerAPI.Persistence.Context;
 
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<TaskManagerDbContext>(options =>
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
+
+builder.Services.AddScoped<ITaskManagerDbContext, TaskManagerDbContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

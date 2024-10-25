@@ -8,17 +8,20 @@ namespace TaskManagerAPI.Persistence.EntityConfigurations.UsersConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(r => r.Id);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(r => r.UserName)
+            builder.Property(u => u.UserName)
                 .IsRequired()
                 .HasMaxLength(15);
 
-            builder.Property(r => r.Email)
+            builder.Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(30);
 
-            builder.Property(r => r.CreatedAt)
+            builder.Property(u => u.Password)
+                .IsRequired();
+
+            builder.Property(u => u.CreatedAt)
                 .IsRequired();
         }
     }
