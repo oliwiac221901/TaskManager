@@ -37,3 +37,19 @@ The response will return one of the following status codes based on the outcome 
 - **401 Unauthorized**: Authentication is required, or the provided data is not authorized for the requested operation.
 - **409 Conflict**: The provided email or username already exists.
 
+#### Data Validation
+
+This project uses FluentValidation with MediatR Pipeline Behavior for input validation.
+
+##### UserName:
+- **NotEmpty**
+- **MinimumLength** - 3
+- **MaximumLength** - 20
+##### Email
+- **NotEmpty**
+- **EmailAddress**
+- **MaximumLength** - 50
+##### Password
+- **NotEmpty**
+- **MinimumLength** - 8
+- **MaximumLength** - 20
