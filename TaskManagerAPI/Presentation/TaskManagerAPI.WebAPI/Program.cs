@@ -3,6 +3,7 @@ using TaskManagerAPI.Application;
 using TaskManagerAPI.Application.Common.Interfaces;
 using TaskManagerAPI.Persistence;
 using TaskManagerAPI.Persistence.Context;
+using TaskManagerAPI.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
