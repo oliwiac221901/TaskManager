@@ -51,6 +51,17 @@ public class ExceptionHandlingMiddleware
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
                 };
                 break;
+                
+            case BadRequestException badRequestException:
+                statusCode = StatusCodes.Status400BadRequest;
+                problemDetails = new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Title = "Bad request",
+                    Detail = badRequestException.Message,
+                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4"
+                };
+                break;
 
             case NotFoundException notFoundException:
                 statusCode = StatusCodes.Status404NotFound;
@@ -59,6 +70,17 @@ public class ExceptionHandlingMiddleware
                     Status = StatusCodes.Status404NotFound,
                     Title = "Resource not found",
                     Detail = notFoundException.Message,
+                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4"
+                };
+                break;
+
+            case ConflictException conflictException:
+                statusCode = StatusCodes.Status409Conflict;
+                problemDetails = new ProblemDetails
+                {
+                    Status = StatusCodes.Status409Conflict,
+                    Title = "User already exists",
+                    Detail = conflictException.Message,
                     Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4"
                 };
                 break;
