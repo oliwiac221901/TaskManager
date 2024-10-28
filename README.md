@@ -53,3 +53,9 @@ This project uses FluentValidation with MediatR Pipeline Behavior for input vali
 - **NotEmpty**
 - **MinimumLength** - 8
 - **MaximumLength** - 20
+
+#### Services
+
+- **PasswordHasher**
+
+This project uses PBKDF2 (Password-Based Key Derivation Function 2) algorithm to generate a secure hash of user passwords during the registration process.
