@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TaskManagerAPI.Application.Common.Interfaces;
+using TaskManagerAPI.Persistence.Services;
 
 namespace TaskManagerAPI.Persistence
 {
@@ -6,8 +8,8 @@ namespace TaskManagerAPI.Persistence
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             return services;
         }
     }
 }
-
