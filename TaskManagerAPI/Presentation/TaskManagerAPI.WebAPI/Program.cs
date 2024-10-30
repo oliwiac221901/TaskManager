@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TaskManagerAPI.Application;
 using TaskManagerAPI.Application.Common.Interfaces;
 using TaskManagerAPI.Persistence;
 using TaskManagerAPI.Persistence.Context;
+using TaskManagerAPI.Persistence.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 
 builder.Services.AddScoped<ITaskManagerDbContext, TaskManagerDbContext>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
