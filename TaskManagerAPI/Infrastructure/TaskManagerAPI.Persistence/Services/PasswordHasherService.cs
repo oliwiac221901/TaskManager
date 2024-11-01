@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using TaskManagerAPI.Application.Common.Interfaces;
 
 namespace TaskManagerAPI.Persistence.Services;
-public class PasswordHasher : IPasswordHasher
+public class PasswordHasherService : IPasswordHasherService
 {
     public string HashPassword(string password)
     {
