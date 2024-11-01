@@ -2,27 +2,27 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TaskManagerAPI.Domain.Entities.UserManage;
 
-namespace TaskManagerAPI.Persistence.EntityConfigurations.UsersConfigurations
+namespace TaskManagerAPI.Persistence.EntityConfigurations.UsersConfigurations;
+
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.HasKey(u => u.Id);
+        builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.UserName)
-                .IsRequired()
-                .HasMaxLength(15);
+        builder.Property(u => u.UserName)
+            .IsRequired()
+            .HasMaxLength(15);
 
-            builder.Property(u => u.Email)
-                .IsRequired()
-                .HasMaxLength(30);
+        builder.Property(u => u.Email)
+            .IsRequired()
+            .HasMaxLength(30);
 
-            builder.Property(u => u.Password)
-                .IsRequired();
+        builder.Property(u => u.Password)
+            .IsRequired()
+            .HasMaxLength(20);
 
-            builder.Property(u => u.CreatedAt)
-                .IsRequired();
-        }
+        builder.Property(u => u.CreatedAt)
+            .IsRequired();
     }
 }

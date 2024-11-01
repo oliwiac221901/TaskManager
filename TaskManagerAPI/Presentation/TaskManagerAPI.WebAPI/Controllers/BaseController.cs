@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TaskManagerAPI.WebAPI.Controllers
-{
-    [ApiController]
-    public class BaseController : ControllerBase
-    {
-        private IMediator _mediator;
+namespace TaskManagerAPI.WebAPI.Controllers;
 
-        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
-    }
+[ApiController]
+public class BaseController : ControllerBase
+{
+    private IMediator _mediator;
+
+    protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
 }

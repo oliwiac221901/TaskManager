@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using TaskManagerAPI.Application.Dtos.UsersManage;
 
-namespace TaskManagerAPI.Application.UsersManage.RegisterUser.Commands
+namespace TaskManagerAPI.Application.UsersManage.RegisterUser.Commands;
+public class RegisterUserCommand : IRequest<int>
 {
-    public class RegisterUserCommand : IRequest<int>
-    {
-        public RegisterUserDto RegisterUserDto { get; set; }
-    }
+    public RegisterUserDto RegisterUserDto { get; set; }
 }
