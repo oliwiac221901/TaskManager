@@ -34,8 +34,7 @@ The response will return one of the following status codes based on the outcome 
 
 - **201 Created**: The user was successfully created.
 - **400 Bad Request**: The request is missing required fields or the provided data is invalid.
-- **401 Unauthorized**: Authentication is required, or the provided data is not authorized for the requested operation.
-- **409 Conflict**: The provided email or username already exists.
+- **409 Conflict**: The provided username already exists.
 
 #### Data Validation
 
@@ -56,6 +55,53 @@ This project uses FluentValidation with MediatR Pipeline Behavior for input vali
 
 #### Services
 
-- **PasswordHasher**
+- **PasswordHasher** - HashPassword method
 
 This project uses PBKDF2 (Password-Based Key Derivation Function 2) algorithm to generate a secure hash of user passwords during the registration process.
+
+### `POST /api/users/login`
+
+This endpoint is used for authentication a registered user. It expects data in JSON format in the request body. Upon successful processing, the API will return the appropriate status code and JWT Token.
+
+#### Request Body
+
+The request body must include the user's data in JSON format. The required fields are:
+
+- **username** (string): The username (required).
+- **password** (string): The user's password (required).
+
+**Example**:
+
+```json
+{
+  "username": "john_doe",
+  "password": "securepassword123"
+}
+```
+
+#### Response
+
+The response will return one of the following status codes based on the outcome of the authentication process:
+
+- **200 OK**: The user was successfully authenticated.
+- **400 Bad Request**: The request is missing required fields or the provided data is invalid.
+- **404 Not Found**: The provided user was not found in database.
+
+#### Data Validation
+
+This project uses FluentValidation with MediatR Pipeline Behavior for input validation.
+
+##### UserName:
+- **NotEmpty**
+##### Password
+- **NotEmpty**
+
+#### Services
+
+- **PasswordHasherService** - VerifyPassword method
+
+This project uses method that verifies whether a plaintext password matches a previously stored hashed password during the authentication process.
+
+- **JwtTokenService**
+
+This service is responsible for generating a JWT token only after successful authentication.
