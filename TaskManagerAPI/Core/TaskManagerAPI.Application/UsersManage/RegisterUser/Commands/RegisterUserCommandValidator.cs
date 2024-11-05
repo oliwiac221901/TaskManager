@@ -9,12 +9,12 @@ public class RegisterUserCommandValidator : AbstractValidator<RegisterUserComman
         RuleFor(r => r.RegisterUserDto.UserName)
             .NotEmpty().WithMessage("UserName cannot be empty!")
             .MinimumLength(3).WithMessage("UserName must have at least 3 characters!")
-            .MaximumLength(15).WithMessage("UserName cannot be longer than 20 characters!");
+            .MaximumLength(20).WithMessage("UserName cannot be longer than 20 characters!");
 
         RuleFor(r => r.RegisterUserDto.Email)
             .NotEmpty().WithMessage("Email cannot be empty!")
             .EmailAddress().WithMessage("Invalid email format!")
-            .MaximumLength(30).WithMessage("Email cannot be longer than 50 characters!");
+            .MaximumLength(50).WithMessage("Email cannot be longer than 50 characters!");
 
         RuleFor(r => r.RegisterUserDto.Password)
             .NotEmpty().WithMessage("Password cannot be empty!")
