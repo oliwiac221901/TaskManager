@@ -7,7 +7,6 @@ namespace TaskManagerAPI.WebAPI.Controllers;
 
 [Route("api/users")]
 [ApiController]
-[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 public class UserController : BaseController
 {
     [HttpPost("register")]

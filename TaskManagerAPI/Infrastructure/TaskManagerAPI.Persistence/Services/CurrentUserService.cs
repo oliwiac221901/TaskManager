@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using TaskManagerAPI.Application.Common.ExceptionsError;
 using TaskManagerAPI.Application.Common.Interfaces;
 
 namespace TaskManagerAPI.Persistence.Services;
@@ -13,9 +14,23 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string? userId =>
-        _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+    public int UserId
+    {
+        get
+        {
+            var userIdValue = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-    public string? userName =>
-        _httpContextAccessor.HttpContext?.User?.Identity?.Name;
+            if (string.IsNullOrEmpty(userIdValue) || !int.TryParse(userIdValue, out var id))
+            {
+                throw new UnauthorizedAccessException("User is not authorized!");
+            }
+
+            return id;
+        }
+    }
+
+    public string UserName =>
+        _httpContextAccessor.HttpContext.User.Identity.Name;
+
+
 }
